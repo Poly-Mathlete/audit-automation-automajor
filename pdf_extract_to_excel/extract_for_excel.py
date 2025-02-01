@@ -6,6 +6,8 @@ import pdfplumber  # Import the pdfplumber library for PDF extraction
 from dotenv import load_dotenv  # Import the load_dotenv function from the dotenv library
 import os  # Import the os module for interacting with the operating system  # Import the pdf_processing function from the extract_pdf_to_json module
 from excel_prompt_page_duree import excel_extraction_page_duree
+from excel_promp_page_divers import excel_extraction_page_divers
+from excel_prompt_page_charge import excel_extraction_page_charge
 
 # Loading environment variables from the .env file
 load_dotenv()
@@ -82,4 +84,4 @@ def extract_from_pdf(pdf_file, to_do):
 
 if __name__ == "__main__":
     with open(test_pdf_path, 'rb') as file:
-        print(extract_from_pdf(file, excel_extraction_page_duree))
+        print(extract_from_pdf(file, excel_extraction_page_divers))

@@ -519,7 +519,7 @@ extract_indice_periodicite_indexation = [{
 extract_contraire_a_L112_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
 Extraire et formater les informations du contenu fourni comme suit:
-    INFO_1 : si le bail est contraire à l'article L112-1 du code de la construction et de l'habitation (indice de base fixe / à la hausse / plafond ou plancher / distorsion) (oui ou non)
+    INFO_1 : vaut oui si le bail est contraire à l'article L112-1 du code de la construction et de l'habitation (indice de base fixe / à la hausse / plafond ou plancher / distorsion), non sinon
 
 Tu remplacera par la suite INFO_1 par la valeur oui ou non auquel il correspond
     
@@ -539,6 +539,8 @@ extract_contraire_a_L112 = [{
     "tag": "CONTRAIRE_A_L112",
     "sys_prompt": extract_contraire_a_L112_p_1,
     },]
+
+excel_extraction_page_duree = [extract_contraire_a_L112]
 
 extract_eventual_commentaire_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
@@ -562,6 +564,8 @@ extract_eventual_commentaire = [{
     "sys_prompt": extract_eventual_commentaire_p_1,
     },]
 """
+
+"""
 excel_extraction_page_duree= [
     extract_bailleur,
     extract_preneur,
@@ -583,4 +587,4 @@ excel_extraction_page_duree= [
     extract_garentie_locative,
     extract_indice_periodicite_indexation,
     extract_contraire_a_L112,
-]
+]"""

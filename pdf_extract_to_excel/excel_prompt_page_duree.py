@@ -29,10 +29,17 @@ extract_preneur_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
 Extrait de ce texte l'information suivante : le nom, l'adresse, le numéro RCS du preneur.
 
+On remplacera par la suite : 
+    INFO_1 par le nom du preneur
+    INFO_2 par l'adresse du preneur
+    INFO_3 par le numéro RCS du preneur
+
 Retourne ta réponse dans entre les balises XML <output> sous la forme:
 <output>
-NOM preneur, ADRESSE preneur, numéro rcs de l'entreprise.
+INFO_1, INFO_2, INFO_3.
 </output>
+
+n'affiche pas INFO
 
 Réfléchis à chaque étape de ton processus de réflexion et note tes pensées dans des balises XML <scratchpad>
 
@@ -149,9 +156,14 @@ Réfléchis à chaque étape de ton processus de réflexion et note tes pensées
 extract_allowed_activities_p_2 = f"""
 Tu est un processeur de données et un avocat. Tu recevras des informations relative aux activités autorisées dans le bail.
 Extraire les informations suivantes du contenu fourni dans le format suivant:
-    INFO_1 : usage principal
-    INFO_2 : usage accessoire
-    INFO_3 : autre usage ou détails
+    usage principal,
+    usage accesoire,
+    autre usage ou détails,
+
+On remplacera par la suite
+    INFO_1 par l'usage principal
+    INFO_2 par l'usage accessoire
+    INFO_3 par l'autre usage ou détails
 
 Retourne ta réponse dans entre les balises XML <output> sous la forme:
 <output>
@@ -229,6 +241,8 @@ Extraire les informations suivantes du contenu fourni :
 
 la date de fin de bail peut être calculée en fonction de la durée du bail et de la date de prise d'effet.
 
+on remplacera par la suite JOUR/MOIS/ANNE par la date de fin du bail
+
 Retourne ta réponse dans entre les balises XML <output> sous la forme:
 <output>
 JOUR/MOIS/ANNEE
@@ -255,6 +269,8 @@ Retourne ta réponse dans entre les balises XML <output> sous la forme:
 DUREES_BAIL
 </output>
 
+Ne pas afficher DUREES_BAIL
+
 Réfléchis à chaque étape de ton processus de réflexion et note tes pensées dans des balises XML <scratchpad>
 """
 
@@ -270,7 +286,9 @@ Extraire les informations suivantes du contenu fourni :
     prochaine factulté de sortie du preneur
 
 La date de prise d'effet du bail si elle n'est pas précisée est la date de signature du bail.
-Cette date peut être calculée comme la date de prise d'effet du bail + la durée de la première période de sortie.
+Cette date peut être calculée comme la date de prise d'effet du bail (date de signature si non précisé) + la durée de la première période de sortie.
+
+On remplacera par la suite JOUR/MOIS/ANNEE par la date de la prochaine facultée de sortie du preneur
 
 Retourne ta réponse dans entre les balises XML <output> sous la forme:
 <output>
@@ -298,6 +316,7 @@ Retourne ta réponse dans entre les balises XML <output> sous la forme:
 DUREE
 </output>
 
+N'affiche pas DUREE
 Si tu ne trouves pas, retourne "inconnu"
 
 Réfléchis à chaque étape de ton processus de réflexion et note tes pensées dans des balises XML <scratchpad>
@@ -452,6 +471,8 @@ Extraire et formater les informations du contenu fourni comme suit:
     INFO_1 : garentie locative du BAIL, coût de la garentie, correspondance avec le coût du loyer
     INFO_2 : garentie locative de l'AVENANT, coût de la garentie, correspondance avec le coût du loyer
 
+On affichera à la place de INFO_1 et INFO_2 ce à quoi il font référence.
+    
 Retourne ta réponse dans entre les balises XML <output> sous la forme suivante :
 <output>
 "INFO_1"\n
@@ -494,17 +515,20 @@ extract_indice_periodicite_indexation = [{
     "sys_prompt": extract_indice_periodicite_indexation_p_1,
     },]
 
+#? doute sur la véracité du résultat.
 extract_contraire_a_L112_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
 Extraire et formater les informations du contenu fourni comme suit:
     INFO_1 : si le bail est contraire à l'article L112-1 du code de la construction et de l'habitation (indice de base fixe / à la hausse / plafond ou plancher / distorsion) (oui ou non)
 
+Tu remplacera par la suite INFO_1 par la valeur oui ou non auquel il correspond
+    
 Retourne ta réponse dans entre les balises XML <output> sous la forme suivante :
 <output>
 INFO_1
 </output>
 
-Ne pas afficher pas INFO_1 ni INFO_2. Ne pas afficher les informations si elles ne sont pas présentes.
+Ne pas afficher pas INFO. Ne pas afficher les informations si elles ne sont pas présentes.
 
 
 Réfléchis à chaque étape de ton processus de réflexion et note tes pensées dans des balises XML <scratchpad>

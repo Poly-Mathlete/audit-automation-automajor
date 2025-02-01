@@ -540,7 +540,7 @@ extract_contraire_a_L112 = [{
     "sys_prompt": extract_contraire_a_L112_p_1,
     },]
 
-excel_extraction_page_duree = [extract_contraire_a_L112]
+#excel_extraction_page_duree = [extract_contraire_a_L112]
 
 extract_eventual_commentaire_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
@@ -565,7 +565,7 @@ extract_eventual_commentaire = [{
     },]
 """
 
-"""
+
 excel_extraction_page_duree= [
     extract_bailleur,
     extract_preneur,
@@ -587,4 +587,4 @@ excel_extraction_page_duree= [
     extract_garentie_locative,
     extract_indice_periodicite_indexation,
     extract_contraire_a_L112,
-]"""
+]

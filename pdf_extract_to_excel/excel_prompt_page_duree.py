@@ -519,7 +519,7 @@ extract_indice_periodicite_indexation = [{
 extract_contraire_a_L112_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
 Extraire et formater les informations du contenu fourni comme suit:
-    INFO_1 : vaut oui si le bail est contraire à l'article L112-1 du code de la construction et de l'habitation (indice de base fixe / à la hausse / plafond ou plancher / distorsion), non sinon
+    INFO_1 : vaut oui si le bail est contraire à l'article L112-1 du code monétaire et financier (indice de base fixe / à la hausse / plafond ou plancher / distorsion), non sinon
 
 Tu remplacera par la suite INFO_1 par la valeur oui ou non auquel il correspond
     

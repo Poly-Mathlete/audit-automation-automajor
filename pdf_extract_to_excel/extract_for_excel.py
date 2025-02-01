@@ -96,6 +96,7 @@ ws3 = wb["Divers"]
 
 def populate_excel(ws, data):
     i = 3
+    #get the first empty row, in case the file needs multiple pdfs
     while ws.cell(row=i, column=3).value is not None:
         i += 1
     for column_index, tag  in enumerate(data):

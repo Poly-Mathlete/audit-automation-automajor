@@ -19,7 +19,7 @@ boto3.setup_default_session(profile_name=os.getenv("hackathon"))
 config = botocore.config.Config(connect_timeout=300, read_timeout=300)
 bedrock = boto3.client('bedrock-runtime', 'us-west-2', config=config)
 
-test_pdf_path = "C:\\Users\\mateo\\Documents\\ecole\\CS-1A\\assos\\automatant\\hackathon-GenIA-31-01-2025\\data\\Bail_Harmonie.pdf"
+test_pdf_path = "/Users/gk/Downloads/HarmonieBail.pdf"
 
 def parse_xml(xml, tag):
     """
@@ -41,7 +41,7 @@ def parse_xml(xml, tag):
 
 def extract_from_pdf(pdf_file, to_do):
     text = ""
-    print("pocessing pdf...")
+    print("processing pdf...")
     with pdfplumber.open(pdf_file) as pdf:
         for page in pdf.pages:
             text += page.extract_text()
@@ -80,8 +80,34 @@ def extract_from_pdf(pdf_file, to_do):
         result[thing[0]["tag"]] = input[0]["text"]
     return result
 
+#extract the data from the pdf
+result_dict1 = extract_from_pdf(test_pdf_path, excel_extraction_page_charge)
+result_dict2 = {'ACTIF': result_dict1['ACTIF']} 
+result_dict2.update(extract_from_pdf(test_pdf_path, excel_extraction_page_duree))
+#result_dict3 = extract_from_pdf(test_pdf_path, excel_extraction_page_divers)
 
+from openpyxl import load_workbook
+wb = load_workbook(filename ="Tableau_audit_immo_modele.xlsx")
+output_file = 'Tableau_audit_immo.xlsx'
+#get the excel sheets
+ws1 = wb["Durée - Loyers"]
+ws2 = wb["Refacturation des charges"]
+ws3 = wb["Divers"]
 
+def populate_excel(ws, data):
+    i = 3
+    #get the first empty row, in case the file needs multiple pdfs
+    while ws.cell(row=i, column=3).value is not None:
+        i += 1
+    for column_index, tag  in enumerate(data):
+        ws.cell(row=i, column=column_index+2).value = data[tag]
+    return "done"
+#populate the excel sheet with the extracted data
+populate_excel(ws1, result_dict1)
+populate_excel(ws2, result_dict2)
+#populate_excel(ws3, result_dict3)
+
+wb.save(output_file)
 if __name__ == "__main__":
     with open(test_pdf_path, 'rb') as file:
         print(extract_from_pdf(file, excel_extraction_page_divers))

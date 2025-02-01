@@ -170,3 +170,5 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 config.env
+Tableau_audit_immo.xlsx
+~$Tableau_audit_immo_modele.xlsx

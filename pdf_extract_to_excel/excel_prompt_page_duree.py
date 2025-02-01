@@ -189,6 +189,18 @@ extract_allowed_activities = [
     "sys_prompt": extract_allowed_activities_p_2,
     },]
 
+extract_usage = extract_allowed_activities = [
+    {
+    "description" : "récupérer les activités autorisées",
+    "tag": "ALLOWED_ACTIVITIES",
+    "sys_prompt": extract_allowed_activities_p_1,
+    },
+    {
+    "description" : "récupérer les activités autorisées",
+    "tag": "ALLOWED_ACTIVITIES",
+    "sys_prompt": extract_allowed_activities_p_2,
+    },]
+
 date_signature_p_1 = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
 Extraire les informations suivantes du contenu fourni :
@@ -573,6 +585,7 @@ excel_extraction_page_duree= [
     extract_adress,
     extract_designation,
     extract_allowed_activities,
+    extract_usage,
     exctract_signature_date,
     extract_date_prise_effet,
     extract_date_fin_bail,

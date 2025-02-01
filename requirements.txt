@@ -4,3 +4,4 @@ botocore
 pdfplumber
 python-dotenv
 streamlit
+openpyxl

@@ -80,6 +80,6 @@ def extract_from_pdf(pdf_file, to_do):
 
 
 
-
-with open(test_pdf_path, 'rb') as file:
-    print(extract_from_pdf(file, excel_extraction_page_duree))
+if __name__ == "__main__":
+    with open(test_pdf_path, 'rb') as file:
+        print(extract_from_pdf(file, excel_extraction_page_duree))

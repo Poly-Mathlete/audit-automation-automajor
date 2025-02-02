@@ -253,7 +253,7 @@ Extraire les informations suivantes du contenu fourni :
 
 la date de fin de bail peut être calculée en fonction de la durée du bail et de la date de prise d'effet.
 
-on remplacera par la suite JOUR/MOIS/ANNE par la date de fin du bail
+on remplacera par la suite JOUR/MOIS/ANNE par la date de fin du bail ou par inconnu si il a été impossible de la déterminer.
 
 Retourne ta réponse dans entre les balises XML <output> sous la forme:
 <output>
@@ -275,6 +275,7 @@ Extraire les informations suivantes du contenu fourni :
     durée du bail, durée de l'avenant
 
 Il peut y avoir plusieurs durées de bail possibles, extraire toutes les durées.
+NE TE REPETE PAS !
 
 Retourne ta réponse dans entre les balises XML <output> sous la forme:
 <output>

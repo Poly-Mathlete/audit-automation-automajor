@@ -125,6 +125,24 @@ extract_TEOM_locaux_loues = [{
     "sys_prompt": TEOM_locaux_loues,
     },]
 
+TOEM_immeuble = f"""
+Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
+Extraire les informations suivantes du contenu fourni :
+Qui du Bailleur ou du Preneur doit payer les TEOM de l'immeuble  ? Si ce n'est pas précisé, tu dois retourner Non précisé. Si l'information n'est pas présente, retourner Non précisé. 
+Retourne ta réponse dans entre les balises XML <output> sous la forme:
+<output>
+Preneur ou Bailleur ou Non précisé
+</output>
+
+Réfléchis à chaque étape de ton processus de réflexion et note tes pensées dans des balises XML <scratchpad>
+"""
+
+extract_TEOM_immeuble = [{
+    "description" : "récupérer type de bail",
+    "tag": "TOEM_immeuble",
+    "sys_prompt": TOEM_immeuble,
+}]
+
 Taxes_bureaux_locaux_commerciaux_IDF_locaux_loues = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'immobilier.
 Extraire les informations suivantes du contenu fourni :
@@ -233,6 +251,24 @@ extract_honoraires_gestion_techniques = [{
     "sys_prompt": honoraires_gestion_techniques,
     },]
 
+honoraires_assurance_bailleur = f"""
+Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
+Extraire les informations suivantes du contenu fourni :
+Qui du Bailleur ou du Preneur doit payer l'assurance du bailleur ? Si ce n'est pas précisé, tu dois retourner Non précisé. Attention, ce n'est pas la même chose que les taxes foncières.
+Retourne ta réponse dans entre les balises XML <output> sous la forme:
+<output>
+Preneur ou Bailleur ou Non précisé
+</output>
+
+Réfléchis à chaque étape de ton processus de réflexion et note tes pensées dans des balises XML <scratchpad>
+"""
+
+extract_honoraires_assurance_bailleur = [{
+    "description" : "récupérer type de bail",
+    "tag": "honoraires_assurance_bailleur",
+    "sys_prompt": honoraires_assurance_bailleur,
+    },]
+
 travaux_code_civil = f"""
 Tu est un processeur de données et un avocat. Tu recevras le texte d'un bail commercial en rapport avec l'imobilier.
 Extraire les informations suivantes du contenu fourni :
@@ -316,12 +352,14 @@ excel_extraction_page_charge = [
     extract_taxes_foncieres_locaux_loues,
     extract_taxes_foncieres_sur_immeubles,
     extract_TEOM_locaux_loues,
+    extract_TEOM_immeuble,
     extract_Taxes_bureaux_locaux_commerciaux_IDF_locaux_loues,
     extract_Taxes_bureaux_locaux_commerciaux_IDF_locaux_immeubles,
     extract_impots_futurs_locaux_loues,
     extract_honoraires_gestion_locative,
     extract_honoraires_gestion_loyers,
     extract_honoraires_gestion_techniques,
+    extract_honoraires_assurance_bailleur,
     extract_travaux_code_civil,
     extract_travaux_conformite,
     extract_travaux_vetuste,

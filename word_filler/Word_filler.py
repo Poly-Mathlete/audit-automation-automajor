@@ -70,8 +70,8 @@ def edit(donnees):
 
     
 
-def fill(path):
-    data=edit("data.json")
+def fill(path_of_data):
+    data=edit(path_of_data)
     doc = Document("Fiche_audit_modele.docx")
     
     # Ajout des placeholders avec accolades

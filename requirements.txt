@@ -5,3 +5,5 @@ pdfplumber
 python-dotenv
 streamlit
 openpyxl
+docx
+exceptions

@@ -16,9 +16,9 @@ pdf_extract_to_word : \
     
 word_filler : \
     Word_filler : \
-        fill(data_path) #data_path is the path to a .json file containing the informations to fill
+        fill(data_path) #data_path is the path to a .json f ile containing the informations to fill
 
-
+stremlint app: front end to generate the excel
 
 
 

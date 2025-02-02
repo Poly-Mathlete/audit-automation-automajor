@@ -181,7 +181,7 @@ def extract_from_pdf(file):
 
 if __name__=="__main__":
     with open(test_pdf_path, 'rb') as f:
-        dict = extract_from_pdf_fast(f,2)
+        dict = extract_from_pdf(f)
     str = json.dumps(dict)
     with open("data.json", "w") as f:
         f.write(str)

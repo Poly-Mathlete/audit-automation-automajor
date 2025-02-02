@@ -5,9 +5,9 @@ import streamlit as st  # Import the Streamlit library for building web apps
 import pdfplumber  # Import the pdfplumber library for PDF extraction
 from dotenv import load_dotenv  # Import the load_dotenv function from the dotenv library
 import os  # Import the os module for interacting with the operating system  # Import the pdf_processing function from the extract_pdf_to_json module
-from excel_prompt_page_duree import excel_extraction_page_duree
-from excel_promp_page_divers import excel_extraction_page_divers
-from excel_prompt_page_charge import excel_extraction_page_charge
+from pdf_extract_to_excel.excel_prompt_page_duree import excel_extraction_page_duree
+from pdf_extract_to_excel.excel_promp_page_divers import excel_extraction_page_divers
+from pdf_extract_to_excel.excel_prompt_page_charge import excel_extraction_page_charge
 from concurrent.futures import ThreadPoolExecutor
 
 # Loading environment variables from the .env file

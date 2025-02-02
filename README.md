@@ -12,6 +12,7 @@ pdf_extract_to_excel : \
 pdf_extract_to_word : \
     extract_for_word : \
         extract_from_pdf(f) # input is a file, output is a dictionnary that will be used to fillin the word document
+        extract_from_pdf_fast(f, max_worker=10) #faster version
     
 word_filler : \
     Word_filler : \

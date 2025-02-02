@@ -1,8 +1,277 @@
 {
-   "parties": {
-    "bailleur": {"nom":"Reda Inc","numero":"10"},
-    "preneur": {"nom":"Hakim"},
-    "adresse" : {"nom":"ooga"}
-  }} 
-
-
+  "PARTIES": {
+      "Bailleur": {
+          "nom": "Société CENTRECOM SAINT-RAPHAEL",
+          "lieu de l'imatriculation RCS": "SAINT-RAPHAEL (83)",
+          "numéro SIREN": "814.665.832",
+          "explication": "Les informations sont directement extraites du texte fourni."
+      },
+      "Preneur": {
+          "nom": "HABIDOM",
+          "lieu de l'imatriculation RCS": "SARTROUVILLE (78500)",
+          "numéro SIREN": "260 214 797",
+          "explication": "Les informations sont directement extraites du texte fourni."
+      },
+      "Cession": {
+          "bool": false,
+          "explication": "Il n'y a pas de mention de cession des droits au bail par le preneur d'origine dans le texte fourni."
+      }
+  },
+  "DUREE": {
+      "Date_signature_contrat": {
+          "date": null,
+          "explication": "Aucune date de signature n'est mentionnée dans le texte fourni."
+      },
+      "Application_loi_pinel": {
+          "value": null,
+          "explication": "Comme la date de signature du contrat n'est pas fournie, il est impossible de déterminer si la loi Pinel est applicable."
+      },
+      "Date_effet_bail": {
+          "date": null,
+          "explication": "Aucune date de prise d'effet n'est mentionnée dans le texte fourni."
+      },
+      "Duree_bail": {
+          "duree": null,
+          "explication": "Aucune durée de bail n'est mentionnée dans le texte fourni."
+      },
+      "Date_terme_contractuel": {
+          "date": null,
+          "explication": "Aucune date de terme contractuel n'est mentionnée dans le texte fourni."
+      },
+      "Periode_ferme": {
+          "bool": null,
+          "explication": "Aucune information sur la période ferme n'est mentionnée dans le texte fourni."
+      },
+      "Date_faculte_sortie": {
+          "date": null,
+          "explication": "Aucune date de la prochaine faculté de sortie n'est mentionnée dans le texte fourni."
+      },
+      "Preavis_minimum": {
+          "duree": null,
+          "explication": "Aucune information sur le préavis minimum n'est mentionnée dans le texte fourni."
+      },
+      "Clause_duree_bail_renouvele": {
+          "bool": null,
+          "explication": "Aucune clause spécifique relative à la durée du bail renouvelé n'est mentionnée dans le texte fourni."
+      }
+  },
+  "MESURES D'ACCOMPAGNEMENT": {
+      "Franchise_Reduction": {
+          "bool": false,
+          "conditions": null,
+          "explication": "Le texte fourni ne mentionne aucune information concernant une franchise ou une réduction de loyer en cours."
+      },
+      "Participation_financiere": {
+          "bool": false,
+          "montant": null,
+          "conditions": null,
+          "explication": "Le texte fourni ne mentionne aucune information concernant une participation financière du bailleur aux travaux d'aménagement du preneur."
+      },
+      "Mesure_accompagnement": {
+          "bool": false,
+          "explication": "Le texte fourni ne mentionne aucune autre mesure d'accompagnement dans le contrat."
+      }
+  },
+  "GARANTIES": {
+      "Depot_garantie": {
+          "bool": false,
+          "montant": null,
+          "explication": "Le texte fourni ne mentionne aucune information concernant un dépôt de garantie."
+      },
+      "Autres_garanties": {
+          "bool": false,
+          "explication": "Le texte fourni ne mentionne aucune information concernant d'autres garanties."
+      },
+      "Original_garantie": {
+          "bool": false,
+          "nature": null,
+          "garant": null,
+          "montant": null,
+          "expiration": null,
+          "transferabilite": null,
+          "explication": "Le texte fourni ne mentionne aucune information concernant une garantie en possession du bailleur ou la transférabilité de la garantie."
+      }
+  },
+  "HONORAIRES, IMPOTS, TAXES ET ASSURANCE DU BAILLEUR": {
+      "Parties_privees": {
+          "Bailleur": {
+              "Impots_futurs": null,
+              "Taxe_fonciere": null,
+              "TEOM": null,
+              "Taxe_commerce": null,
+              "explication": null
+          },
+          "Preneur": {
+              "Impots_futurs": null,
+              "Taxe_fonciere": null,
+              "TEOM": null,
+              "Taxe_commerce": null,
+              "explication": null
+          }
+      },
+      "Parties_communes": {
+          "Bailleur": {
+              "Impots_futurs": null,
+              "Taxe_fonciere": null,
+              "TEOM": null,
+              "Taxe_commerce": null,
+              "explication": null
+          },
+          "Preneur": {
+              "Impots_futurs": null,
+              "Taxe_fonciere": null,
+              "TEOM": null,
+              "Taxe_commerce": null,
+              "explication": null
+          }
+      }
+  },
+  "HONORAIRES, IMPOTS, TAXES ET ASSURANCE DU BAILLEUR (2)": {
+      "Honoraires": {
+          "Bailleur": {
+              "Gestion_technique": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion technique des travaux pour le bailleur."
+              },
+              "Gestion_locative": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion locative pour le bailleur."
+              },
+              "Gestion_loyers": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion des loyers pour le bailleur."
+              },
+              "Gestion_syndic": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion du syndic de copropriété/ASL/AFUL/autre pour le bailleur."
+              }
+          },
+          "Preneur": {
+              "Gestion_technique": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion technique des travaux pour le preneur."
+              },
+              "Gestion_locative": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion locative pour le preneur."
+              },
+              "Gestion_loyers": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion des loyers pour le preneur."
+              },
+              "Gestion_syndic": {
+                  "bool": false,
+                  "conditions": null,
+                  "explication": "Le texte ne mentionne pas de frais de gestion du syndic de copropriété/ASL/AFUL/autre pour le preneur."
+              }
+          }
+      },
+      "Paiement_assurance": {
+          "payeur": null,
+          "explication": "Le texte ne mentionne pas qui paie les primes d’assurance du bailleur."
+      },
+      "Fonds_marketing": {
+          "bool": false,
+          "conditions": null,
+          "explication": "Le texte ne mentionne pas de frais de marketing."
+      }
+  },
+  "TRAVAUX - REPARATIONS - REMPLACEMENTS": {
+      "Parties_privees": {
+          "Bailleur": {
+              "Grosses_reparations": null,
+              "Mise_conformite": null,
+              "Vetuste": null,
+              "Remplacement": null,
+              "explication": "Le texte ne mentionne pas explicitement qui est responsable des frais des grosses réparations, de mise en conformité, des problèmes de vétusté et de remplacement des éléments d'équipement pour les parties privatives."
+          },
+          "Preneur": {
+              "Grosses_reparations": null,
+              "Mise_conformite": null,
+              "Vetuste": null,
+              "Remplacement": null,
+              "explication": "Le texte ne mentionne pas explicitement qui est responsable des frais des grosses réparations, de mise en conformité, des problèmes de vétusté et de remplacement des éléments d'équipement pour les parties privatives."
+          }
+      },
+      "Parties_communes": {
+          "Bailleur": {
+              "Grosses_reparations": null,
+              "Mise_conformite": null,
+              "Vetuste": null,
+              "Remplacement": null,
+              "explication": "Le texte ne mentionne pas explicitement qui est responsable des frais des grosses réparations, de mise en conformité, des problèmes de vétusté et de remplacement des éléments d'équipement pour les parties communes."
+          },
+          "Preneur": {
+              "Grosses_reparations": null,
+              "Mise_conformite": null,
+              "Vetuste": null,
+              "Remplacement": null,
+              "explication": "Le texte ne mentionne pas explicitement qui est responsable des frais des grosses réparations, de mise en conformité, des problèmes de vétusté et de remplacement des éléments d'équipement pour les parties communes."
+          }
+      }
+  },
+  "DESTRUCTION": {
+      "Derogation_article_1722": {
+          "bool": false,
+          "conditions": null,
+          "explication": "Le texte fourni ne contient aucune mention explicite concernant les conditions en cas de destruction des locaux loués. Les sections relatives aux grosses réparations, à la mise en conformité, aux problèmes de vétusté et au remplacement des éléments d'équipement pour les parties privatives et communes indiquent toutes que le texte ne mentionne pas explicitement qui est responsable de ces frais. Par conséquent, il n'y a pas de précision spécifique en cas de destruction des locaux loués dans le texte fourni."
+      }
+  },
+  "AUTORISATIONS DE TRAVAUX": {
+      "Bailleur": {
+          "Travaux": {
+              "bool": false,
+              "conditions": null,
+              "explication": "Le texte fourni ne contient aucune mention explicite concernant la possibilité pour le bailleur de réaliser des travaux dans les locaux loués."
+          },
+          "Travaux_longue_duree": {
+              "bool": false,
+              "conditions": null,
+              "explication": "Le texte fourni ne contient aucune mention explicite concernant la possibilité pour le bailleur de réaliser des travaux dans les locaux loués pendant une longue période sans indémnisation."
+          }
+      },
+      "Preneur": {
+          "Travaux": {
+              "bool": false,
+              "conditions": null,
+              "explication": "Le texte fourni ne contient aucune mention explicite concernant la permission pour le preneur de réaliser des travaux sans l'accord préalable du bailleur."
+          },
+          "Plaques_enseignes": {
+              "bool": false,
+              "conditions": null,
+              "explication": "Le texte fourni ne contient aucune mention explicite concernant la permission pour le preneur de poser des plaques ou des enseignes sans l'accord préalable du bailleur."
+          }
+      }
+  },
+  "RESTITUTION DES LOCAUX LOUES": {
+      "Restituton": {
+          "etat": null,
+          "explication": "Le texte fourni ne contient aucune mention explicite concernant l'état de restitution des locaux loués."
+      },
+      "Clause_accession": {
+          "bool": null,
+          "moment": null,
+          "explication": "Le texte fourni ne contient aucune mention explicite concernant une clause d'accession."
+      },
+      "Remise_etat": {
+          "bool": null,
+          "explication": "Le texte fourni ne contient aucune mention explicite concernant la possibilité pour le bailleur de demander la remise en état des locaux loués."
+      },
+      "Indemnite_immobilisation": {
+          "bool": null,
+          "conditions": null,
+          "explication": "Le texte fourni ne contient aucune mention explicite concernant une indemnité d'immobilisation."
+      },
+      "Etat_lieux_entree": {
+          "bool": null,
+          "explication": "Le texte fourni ne contient aucune mention explicite concernant un état des lieux d'entrée fourni en Data Room."
+      }
+  }
+}

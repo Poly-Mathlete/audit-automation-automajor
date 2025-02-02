@@ -6,6 +6,8 @@ import pdfplumber  # Import the pdfplumber library for PDF extraction
 from dotenv import load_dotenv  # Import the load_dotenv function from the dotenv library
 import os  # Import the os module for interacting with the operating system
 
+from concurrent.futures import ThreadPoolExecutor
+
 from prompts import system_prompt  # Import the system_prompt variable from the prompt module
 
 load_dotenv()
@@ -41,6 +43,72 @@ def json_clean(json_str):
     first_ind = json_str.find('{')
     last_ind = json_str.rfind('}')
     return json_str[first_ind:last_ind+1]
+
+def handle_key(key, text, system_prompt, d_stockage):
+    for i in range(len(system_prompt[key])):
+        print(f"Prompt {i} ------------------------------------------------------")
+        
+            # Prepare the content for the prompt
+        content = [{
+                "type": "text",
+                "text": text
+            }]
+            
+            #prompt dictionary
+        prompt = {
+                "temperature": 0.2,
+                "messages": [  
+                    {
+                        "role": "system",
+                        "content": system_prompt[key][i]
+                    },  
+                    {
+                        "role": "user",
+                        "content": f"{content}"
+                    }
+                ],
+            }
+
+            # Convert the prompt to a JSON string
+        prompt = json.dumps(prompt)
+
+            # Invoke the Bedrock model with the prompt
+        response = bedrock.invoke_model(
+                body=prompt, 
+                modelId="mistral.mistral-large-2407-v1:0", 
+                accept="application/json", 
+                contentType="application/json" )
+            
+        response_body = json.loads(response.get('body').read())
+        llmOutput = response_body['choices'][0]['message']['content'].strip()
+
+        print("beginning of llmOutput")
+        print(llmOutput)
+        print("end of llmOutput")
+        content = llmOutput
+    output_clean = json_clean(llmOutput)
+    d_stockage[key] = output_clean
+    return "ok"
+
+def extract_from_pdf_fast(file, max_simult=10):
+    text = ""
+    print("processing pdf...")
+    with pdfplumber.open(file) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text()
+    print("pdf processed !")
+
+    d_stockage = {}
+
+    with ThreadPoolExecutor(max_workers=max_simult) as executor:
+        futs = []
+        for key in system_prompt.keys():
+            futs.append(
+                executor.submit(handle_key, key, text, system_prompt, d_stockage)
+            )    
+        r = [fut.result() for fut in futs]
+
+    return d_stockage
 
 def extract_from_pdf(file):
 
@@ -94,7 +162,7 @@ def extract_from_pdf(file):
             print(llmOutput)
             print("end of llmOutput")
             content = llmOutput
-        output_clean = json_clean(llmOutput)
+        output_clean = json.loads(json_clean(llmOutput))
         d_stockage[key] = output_clean
         
     print("{")
@@ -113,7 +181,7 @@ def extract_from_pdf(file):
 
 if __name__=="__main__":
     with open(test_pdf_path, 'rb') as f:
-        dict = extract_from_pdf(f)
+        dict = extract_from_pdf_fast(f,2)
     str = json.dumps(dict)
     with open("data.json", "w") as f:
         f.write(str)

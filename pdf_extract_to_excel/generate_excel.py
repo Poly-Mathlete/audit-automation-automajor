@@ -45,5 +45,5 @@ def populate_excel_fast(excel_filename, out_path, pdfs_path, max_simult=10):
     wb.save(out_path)
 
 if __name__=="__main__":
-    populate_excel_fast(excel_path, output_file_path,[test_pdf_path, test_pdf_path_2], 5)
+    populate_excel_fast(excel_path, output_file_path,[test_pdf_path, test_pdf_path_2], 50)
         

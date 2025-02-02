@@ -1,9 +1,9 @@
-from extract_for_excel import extract_from_pdf, extract_from_pdf_fast
+from pdf_extract_to_excel.extract_for_excel import extract_from_pdf, extract_from_pdf_fast
 from openpyxl import load_workbook
-from excel_prompt_page_duree import excel_extraction_page_duree
-from excel_promp_page_divers import excel_extraction_page_divers
-from excel_prompt_page_charge import excel_extraction_page_charge
-from excel_tag_column_correspondance import correspondance_duree, correspondance_charges, correspondance_divers
+from pdf_extract_to_excel.excel_prompt_page_duree import excel_extraction_page_duree
+from pdf_extract_to_excel.excel_promp_page_divers import excel_extraction_page_divers
+from pdf_extract_to_excel.excel_prompt_page_charge import excel_extraction_page_charge
+from pdf_extract_to_excel.excel_tag_column_correspondance import correspondance_duree, correspondance_charges, correspondance_divers
 
 test_pdf_path = "C:\\Users\\mateo\\Documents\\ecole\\CS-1A\\assos\\automatant\\hackathon-GenIA-31-01-2025\\data\\Bail_Harmonie.pdf"
 test_pdf_path_2 = "C:\\Users\\mateo\\Documents\\ecole\\CS-1A\\assos\\automatant\\hackathon-GenIA-31-01-2025\\data\\Bail_BUREAURO.pdf"
@@ -45,5 +45,5 @@ def populate_excel_fast(excel_filename, out_path, pdfs_path, max_simult=10):
     wb.save(out_path)
 
 if __name__=="__main__":
-    populate_excel_fast(excel_path, output_file_path,[test_pdf_path, test_pdf_path_2], 1)
+    populate_excel_fast(excel_path, output_file_path,[test_pdf_path, test_pdf_path_2], 50)
         

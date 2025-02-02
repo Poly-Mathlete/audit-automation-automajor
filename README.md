@@ -22,6 +22,12 @@ Word_filler.py
 
 fill(data_path) #data_path is the path to a .json f ile containing the informations to fill
 
+# ui
+
+streamlit web ui in app.py file
+```
+streamlit run app.py
+```
 
 ```
 Commandes utiles :

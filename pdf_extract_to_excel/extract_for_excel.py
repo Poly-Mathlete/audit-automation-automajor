@@ -8,6 +8,7 @@ import os  # Import the os module for interacting with the operating system  # I
 from excel_prompt_page_duree import excel_extraction_page_duree
 from excel_promp_page_divers import excel_extraction_page_divers
 from excel_prompt_page_charge import excel_extraction_page_charge
+from concurrent.futures import ThreadPoolExecutor
 
 # Loading environment variables from the .env file
 load_dotenv()
@@ -18,6 +19,7 @@ boto3.setup_default_session(profile_name=os.getenv("hackathon"))
 # Setting up the Bedrock client with a custom timeout configuration
 config = botocore.config.Config(connect_timeout=300, read_timeout=300)
 bedrock = boto3.client('bedrock-runtime', 'us-west-2', config=config)
+lambda_client = boto3.client("lambda")
 
 test_pdf_path = "C:\\Users\\mateo\\Documents\\ecole\\CS-1A\\assos\\automatant\\hackathon-GenIA-31-01-2025\\data\\Bail_Harmonie.pdf"
 
@@ -39,8 +41,57 @@ def parse_xml(xml, tag):
     value = xml[start_index+len(start_tag):end_index]
     return value
 
-def extract_from_pdf_fast(pdf_file, to_do):
-    pass
+def process_thing(thing, text, result):
+    print("processing", thing[0]["tag"], '\n')
+    input = [{
+        "type": "text",
+        "text": text
+    }]
+    for call in thing:
+        prompt = {
+            "temperature": 0.0,
+            "messages": [  
+                {
+                "role": "system",
+                    "content": call["sys_prompt"]
+                },
+                {
+                 "role": "user",
+                "content": f"<legal_call_content> {input} </legal_call_content>"
+                }
+                ]
+        }
+        prompt = json.dumps(prompt)
+        response = bedrock.invoke_model(body=prompt, modelId="mistral.mistral-large-2407-v1:0", accept="application/json", contentType="application/json")
+        response_body = json.loads(response.get('body').read())
+        llmOutput = response_body['choices'][0]['message']['content']
+        #print("llmOutput", llmOutput)
+        output = parse_xml(llmOutput, "output")
+        input = [{"type": "text", "text": output}]
+    print("Result TAG :", thing[0]["tag"], input[0]["text"], "\n")
+    result[thing[0]["tag"]] = input[0]["text"]
+    return "ok"
+
+#multi-thread /lambda func
+def extract_from_pdf_fast(pdf_file, to_do, max_simult=10):
+    text = ""
+    print("processing pdf...")
+    with pdfplumber.open(pdf_file) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text()
+    print("pdf processed !")
+
+    result = {}
+
+    print("processing tags one by one\n")
+    with ThreadPoolExecutor(max_workers=max_simult) as executor:
+            futs = []
+            for thing in to_do:
+                futs.append(
+                    executor.submit(process_thing, thing, text, result)
+                )    
+            r = [fut.result() for fut in futs]
+    return result
 
 def extract_from_pdf(pdf_file, to_do):
     text = ""
@@ -85,4 +136,4 @@ def extract_from_pdf(pdf_file, to_do):
 
 if __name__ == "__main__":
     with open(test_pdf_path, 'rb') as file:
-        print(extract_from_pdf(file, excel_extraction_page_divers))
+        print(extract_from_pdf_fast(file, excel_extraction_page_divers))

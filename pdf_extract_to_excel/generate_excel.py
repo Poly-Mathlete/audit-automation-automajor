@@ -1,4 +1,4 @@
-from extract_for_excel import extract_from_pdf
+from extract_for_excel import extract_from_pdf, extract_from_pdf_fast
 from openpyxl import load_workbook
 from excel_prompt_page_duree import excel_extraction_page_duree
 from excel_promp_page_divers import excel_extraction_page_divers
@@ -23,10 +23,21 @@ def populate_excel(excel_filename, out_path, pdfs_path):
         i += 1
         print("processing", pdf_path)
         with open(pdf_path, "rb") as f:
-            duree_dict = extract_from_pdf(f, excel_extraction_page_duree)
-            charge_dict = extract_from_pdf(f, excel_extraction_page_charge)
-            divers_dict = extract_from_pdf(f, excel_extraction_page_divers)
-        dict = duree_dict | charge_dict | divers_dict
+            dict = extract_from_pdf(f, excel_extraction_page_charge + excel_extraction_page_duree + excel_extraction_page_divers)
+        dict["EMPTY"] = ""
+        populate_line(wb, "Durée - Loyers", i, dict, correspondance_duree)
+        populate_line(wb, "Refacturation des charges", i, dict, correspondance_charges)
+        populate_line(wb, "Divers", i, dict, correspondance_divers)
+    wb.save(out_path)
+
+def populate_excel_fast(excel_filename, out_path, pdfs_path, max_simult=10):
+    wb = load_workbook(filename=excel_filename)
+    i = 3
+    for pdf_path in pdfs_path:
+        i += 1
+        print("processing", pdf_path)
+        with open(pdf_path, "rb") as f:
+            dict = extract_from_pdf_fast(f, excel_extraction_page_charge + excel_extraction_page_duree + excel_extraction_page_divers, max_simult)
         dict["EMPTY"] = ""
         populate_line(wb, "Durée - Loyers", i, dict, correspondance_duree)
         populate_line(wb, "Refacturation des charges", i, dict, correspondance_charges)
@@ -34,5 +45,5 @@ def populate_excel(excel_filename, out_path, pdfs_path):
     wb.save(out_path)
 
 if __name__=="__main__":
-    populate_excel(excel_path, output_file_path,[test_pdf_path, test_pdf_path_2])
+    populate_excel_fast(excel_path, output_file_path,[test_pdf_path, test_pdf_path_2], 5)
         
